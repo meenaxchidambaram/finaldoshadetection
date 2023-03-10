@@ -13,9 +13,8 @@ data1=load_model()
 clf=data1["model"]
 le = data1["encoder"]
 
-st.title("Know your dominant dosha.")
-st.write("Just answer a few questions")
-st.write("Fill in the following details and know your dosha")
+st.title("Know your dominant dosha in 20 questions!")
+
  
 
 
@@ -43,29 +42,29 @@ hair_nature = ("Normal","Dry","Oily","Seasonal Variable")
 hands_length=("Long","Medium","Tooshort/Toolong")
 palate_color = ("Pink","Pale/Yellow","Reddish")
 
-selected_Gender=st.selectbox("Gender: ",gender)
-selected_skin_Type = st.selectbox("Skin Type:",skin_Type)
-selected_teeth_color = st.selectbox("Teeth color:",teeth_Color)
-selected_bowel_Freq= st.selectbox("Bowel Frequency:",bowel_Freq)
-selected_speaking_Amount = st.selectbox("Speaking Amount:",speaking_Amount)
+selected_Gender=st.radio("I identify as a: ",gender)
+selected_skin_Type = st.selectbox("In general, my skin type is :",skin_Type)
+selected_teeth_color = st.selectbox("When I smile, my teeth color is :",teeth_Color)
+selected_bowel_Freq= st.selectbox("Sorry for asking but we need to know, select your bowel frequency on a good day:",bowel_Freq)
+selected_speaking_Amount = st.selectbox("How much do I speak in general?:",speaking_Amount)
 
-selected_face_size = st.selectbox("Face Size",face_size)
-selected_forehead_breadth = st.selectbox("Forehead Breadth",forehead_breadth)
-selected_hair_nature = st.selectbox("Hair Nature",hair_nature)
-selected_hands_length = st.selectbox("Hands Length",hands_length)
-selected_palate_color = st.selectbox("Palate Color",palate_color)
+selected_face_size = st.selectbox("How would you describe your face size? ",face_size)
+selected_forehead_breadth = st.selectbox("I would say forehead breadth is: ",forehead_breadth)
+selected_hair_nature = st.selectbox("My hair feels: ",hair_nature)
+selected_hands_length = st.selectbox("The length of my hands are:",hands_length)
+selected_palate_color = st.selectbox("My palate color is (the top part of the inside of your mouth.👅 )",palate_color)
 
-selected_stoolcons=st.selectbox("Stool: ", stoolcons) 
-selected_bodyframe=st.selectbox("Bodyframe: ",bodyframes) 
-selected_shoulder_breadths=st.selectbox("Shoulder_Breadth:",shoulder_breadths) 
-selected_walking_style = st.selectbox("Walking Style",walking_styles) 
-selected_skin_pimple = st.selectbox("Skin Pimple Present:",skin_pimple)
+selected_stoolcons=st.selectbox("Sorry for asking this also, but again, we need to know, select your stool consistency: ", stoolcons) 
+selected_bodyframe=st.selectbox("I would describe my bodyframe as: ",bodyframes) 
+selected_shoulder_breadths=st.selectbox("My shoulder breadth is:",shoulder_breadths) 
+selected_walking_style = st.selectbox("In general, my walking style can be described as: ",walking_styles) 
+selected_skin_pimple = st.selectbox("Do I have pimple prone skin? ",skin_pimple)
 
-selected_bodyHair_Color=st.selectbox("bodyhaircolor: ",bodyHair_Color)
-selected_eye_Size=st.selectbox("eyesize: ",eye_Size)
-selected_eye_Symmetry=st.selectbox("eyesymmetry: ",eye_Symmetry)
-selected_eyebrow_Size=st.selectbox("eyebrowSize: ",eyebrow_Size)
-selected_eyelash_Size=st.selectbox("eyelashSize: ",eyelash_Size)
+selected_bodyHair_Color=st.selectbox("My body hair color is: ",bodyHair_Color)
+selected_eye_Size=st.selectbox("My eye size can be described as: ",eye_Size)
+selected_eye_Symmetry=st.selectbox("Are my eyes symmertrical? : ",eye_Symmetry)
+selected_eyebrow_Size=st.selectbox("In general, I would describe my eyebrow size as: ",eyebrow_Size)
+selected_eyelash_Size=st.selectbox("My eyelashes are: ",eyelash_Size)
 
 if selected_Gender == "Female":
     input1 = 0
@@ -220,17 +219,26 @@ else:
 ok=st.button("Check Dominant Dosha")
 
 if ok:
-
         X=np.array([[input1,input12,input16,input17,input18,input19,input20,input6,input7,input8,input9,input10,input13,input2,
         input3,input4,input11,input5,input14,input15]])
         
         hs = clf.predict(X)
 
         if hs[0]==2:
-            st.subheader("Vata")
+            st.subheader("You dominant dosha is **VATA**.")
+            st.markdown("**Strengths**: learn quickly, highly creative, multitasker, kind-hearted, flexible, “on the go,” naturally slim")
+            st.text("")
+            st.markdown("**Weaknesses**: forgetful, anxious, unstable mood, can get overwhelmed easily, highly sensitive to the cold, has trouble sleeping, irregular appetite and eating patterns, prone to digestive issues and gas, poor circulation (cold hands and feet)")
         elif hs[0]==0:
-            st.subheader("Kapha")
+            st.subheader("You dominant dosha is **KAPHA**.")
+            st.markdown("**Strengths**: empathetic, caring, trusting, patient, calm, wise, happy, romantic, strong bones and joints, healthy immune system")
+            st.text("")
+            st.markdown("**Weaknesses**: prone to weight gain, slow metabolism, sluggishness, over-sleeping, breathing issues (i.e., asthma, allergies), higher risk of heart disease, mucus buildup, susceptible to depression, needs regular motivation and encouragement")
         else:
-            st.subheader("Pitta")
+            st.subheader("You dominant dosha is **PITTA**.")
+            st.markdown("**Strengths**: intelligent, purposeful, learns quickly, self-determined, masters skills easily, strong desire for success, strong, natural leaders, quick metabolism, good circulation, healthy skin and hair")
+            st.text("")
+            st.markdown("impatient, prone to conflict, always hungry, mood swings when hungry, prone to acne and inflammation, sensitive to hot temperatures")
+
 
         
